@@ -61,6 +61,10 @@ Tile.prototype.plantBomb = function () {
 Tile.prototype.toggleFlag = function () {
   if (!this.explored) {
     this.flagged = !this.flagged;
+    if (this.flagged) {
+      this.board.bombsRemaining -= 1;
+    }
+    else this.board.bombsRemaining += 1;
     return true;
   }
 
@@ -71,6 +75,7 @@ var Board = function (gridSize, numBombs) {
   this.gridSize = gridSize;
   this.grid = [];
   this.numBombs = numBombs;
+  this.bombsRemaining = numBombs;
   this.generateBoard();
   this.plantBombs();
 };

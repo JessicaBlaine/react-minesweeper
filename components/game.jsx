@@ -20,7 +20,7 @@ const Game = React.createClass({
   render() {
     let modal;
     if (this.state.board.won() || this.state.board.lost()){
-      const message = this.state.board.won() ? "You won!" : "you lost... ;_;";
+      const message = this.state.board.won() ? "You've won!" : "You've lost.";
       modal =
         <div className='modal-screen'>
           <div className='modal-content'>
@@ -31,6 +31,7 @@ const Game = React.createClass({
     }
     return <div>
       {modal}
+      <span>💣s left: {this.state.board.bombsRemaining}</span>
       <Board mboard={this.state.board} update={this.updateGame}></Board>
     </div>;
 
